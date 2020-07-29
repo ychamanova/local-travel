@@ -35,8 +35,8 @@ class Header extends Component {
 //     return { auth: state.auth }
 // } ----> equivalent of refactor below
 
-function mapStateToProps({ auth }) {
-    return { auth };
+function mapStateToProps({ auth, places }) {
+    return { auth, places };
 }
 
 export default connect(mapStateToProps)(Header);
