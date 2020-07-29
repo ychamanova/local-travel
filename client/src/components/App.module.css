@@ -1,0 +1,24 @@
+/* variables */
+:root{
+    --primary: rgba(29, 2, 54, 0.863);
+    --secondary: rgb(20, 20, 71);
+}
+
+/* reset */
+body,p,a,ul,li{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow-x: hidden;
+}
