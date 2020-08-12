@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import './App.module.css'
 
 
-import styles from './App.module.css'
 import Header from './Header';
 import Landing from './Landing';
+import Dashboard from './Dashboard';
 
 
 class App extends Component {
-    componentDidMount() {
-        this.props.fetchUser();
-        this.props.getPlaces();
-    }
-
     render() {
         return (
             <div>
@@ -22,7 +18,7 @@ class App extends Component {
                     <div>
                         <Header />
                         <Route exact path="/" component={Landing} />
-                        {/* <Route exact path="/dashboard" component={} /> */}
+                        <Route exact path="/search" component={Dashboard} />
                     </div>
                 </BrowserRouter>
             </div>

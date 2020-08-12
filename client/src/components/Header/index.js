@@ -13,7 +13,7 @@ class Header extends Component {
                 );
             default:
                 return (
-                    <a href="/api/logout">Log Out</a>
+                    <a className={styles.yellowBtn} href="/api/logout">Log Out</a>
                 );
 
         }
@@ -23,7 +23,7 @@ class Header extends Component {
         console.log(this.props);
         return (
             <div className={styles.header}>
-                <a>Donate to National Parks</a>
+                <a className={styles.yellowBtn}>Donate to National Parks</a>
                 <h1>Local Travel</h1>
                 {this.renderContent()}
             </div>
