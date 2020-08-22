@@ -1,5 +1,5 @@
 Due to Covid-19 it is very important we don't venture too far from home. Our travel search will gather the best outdoor destinations close to your home. Information is based on National and State Parks Data and Landmarks.
-![Screenshot available](https://ibb.co/F6PnYHn)
+![Screenshot available](https://i.ibb.co/WnTszVs/Screen-Shot-2020-08-22-at-11-15-32-AM.png)
 
 ## Available Scripts
 
