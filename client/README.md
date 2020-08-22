@@ -1,4 +1,5 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Due to Covid-19 it is very important we don't venture too far from home. Our travel search will gather the best outdoor destinations close to your home. Information is based on National and State Parks Data and Landmarks.
+![Screenshot available](https://ibb.co/F6PnYHn)
 
 ## Available Scripts
 
