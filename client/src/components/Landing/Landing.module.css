@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,500;1,500&family=Zilla+Slab:ital@1&display=swap');
 
 .landing {
-    background-image: url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80');
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url('https://images.unsplash.com/photo-1501555088652-021faa106b9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1506&q=80');
     background-attachment:fixed;
     opacity: 1;
     background-repeat: no-repeat;
@@ -21,20 +21,29 @@
 .facility {
     display: flex;
     flex-direction: column;
-    grid-column: 1/12;
+    grid-column: 2/12;
     min-width: 400px;
     padding: 40px 40px;
     display: inline-block;
 }
 
 .facilityTitle {
-    font-size: x-large;
+    display: flex;
+    justify-content: space-between;
+}
+.facilityName {
+    font-size: large;
+    color: rgb(51, 50, 50);
     background-color: rgba(8, 145, 61, 0.461);
-    margin-bottom: 20px;
-    display: inline-block;
     padding: 10px;
     border-radius: 5px;
-    font-family: 'Zilla Slab', serif;
+    font-family: 'Alegreya', serif;
+    margin-bottom: 30px;
+}
+
+.saveButton {
+    cursor: pointer;
+    size: x-large;
 }
 
 .facilityCard {
@@ -44,13 +53,12 @@
     min-height: 40px;
     margin-bottom: 10px;
     border: rgba(250, 247, 247, 0.89);
-    background-color: rgb(244, 244, 235);
-    color: rgb(2, 24, 2);
+    background-color: rgba(244, 244, 235, 0.877);
+    color: rgb(8, 41, 8);
     border-radius: 20px;
     padding: 40px;
     margin: 30px;
-    font-family: Crimson;
-    font-family: 'Alegreya Sans', sans-serif;
+    font-family: 'Zilla Slab', sans-serif;
     align-self: center;
     font-size: 17px;
 }
@@ -72,23 +80,22 @@
 
 
 .footer {
-    padding: 40px 20px;
-    position: fixed;
-    bottom: 0;
+    padding: 5px 5px;
+    margin: 5px 5px;
     width: 100%;
-    min-width: 100%;
-    align-content: center;
     background-color: rgba(4, 54, 52, 0.432);
     color: rgb(200, 216, 226);
     font-family: 'Monda', sans-serif;
     font-size: 20px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
 }
 
 .landing form {
     position: fixed;
     top: 50%;
     left: 50%;
-    /* bring your own prefixes */
     transform: translate(-50%, -50%);
     -webkit-appearance: none;
     padding: 20px;

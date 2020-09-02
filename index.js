@@ -12,7 +12,7 @@ mongoose.connect(keys.mongoURI, { useNewUrlParser: true, useUnifiedTopology: tru
 const app = express();
 
 //parses the body of post/put/patch request so we can access request.body
-// app.use(express.json());
+app.use(express.json());
 
 app.use(
   cookieSession({
@@ -26,6 +26,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/apiRoutes')(app);
+require('./routes/actionRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   //express will serve up production assets like main.js, main.css
@@ -37,5 +38,5 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-const PORT = process.env.PORT || 8090;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT);

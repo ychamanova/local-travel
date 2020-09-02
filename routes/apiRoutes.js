@@ -6,8 +6,12 @@ module.exports = app => {
     app.get(
         '/facilities',
         (request, response) => {
-            const url = `https://ridb.recreation.gov/api/v1/facilities?limit=50&offset=0&latitude=${request.query.lat}&longitude=${request.query.long}&radius=25`;
-            axios.get(url, { headers: { 'apikey': recreationKey } })
+            axios.get(`https://ridb.recreation.gov/api/v1/facilities?limit=50&offset=0&latitude=${request.query.lat}&longitude=${request.query.long}&radius=25`, {
+                headers: {
+                    'apikey': recreationKey,
+                    Accept: 'application/json',
+                },
+            })
                 .then(places => {
                     response.json(places.data.RECDATA)
                 })
