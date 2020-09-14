@@ -60,6 +60,7 @@ class Landing extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        console.log(this.props.auth);
         this.setState({ loading: true })
         axios.get(`/facilities?lat=${this.state.latitude}&long=${this.state.longitude}`)
             .then(responseData => {
@@ -67,8 +68,6 @@ class Landing extends Component {
                 this.setState({ facilities: responseData.data, loading: false });
             })
     }
-
-
 
     render() {
         return (
@@ -96,7 +95,7 @@ class Landing extends Component {
                             <input className={styles.go} type="submit" />
                         </div>
                     </form>
-                    //if there are facilities around, show those
+                    //if there are facilities around, show them
                     : <div className={styles.facility}>
                         {this.state.facilities.map(facility =>
                             (<div className={styles.facilityCard}>

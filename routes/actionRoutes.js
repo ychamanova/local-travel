@@ -9,4 +9,11 @@ module.exports = app => {
             response.send(user);
         }
     )
+
+    app.get(
+        '/savedPlaces',
+        async (request, response) => {
+            response.send(user.savedPlaces);
+        }
+    )
 }

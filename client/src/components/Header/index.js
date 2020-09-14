@@ -13,14 +13,15 @@ class Header extends Component {
                 );
             default:
                 return (
-                    <a className={styles.yellowBtn} href="/api/logout">Log Out</a>
+                    <div>
+                        <a className={styles.yellowBtn} href="/api/logout">Log Out</a>
+                        <a className={styles.yellowBtn} >Saved Places</a>
+                    </div>
                 );
-
         }
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className={styles.header}>
                 <a className={styles.yellowBtn}>Donate to National Parks</a>
