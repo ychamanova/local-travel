@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './Landing.module.css';
-import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class SavedPlaces extends Component {
@@ -17,7 +16,6 @@ class SavedPlaces extends Component {
     }
 
     componentDidMount() {
-        //this.props.fetchUser();
         axios.get('/savedPlaces')
             .then((response) => {
                 console.log(response);
@@ -30,20 +28,13 @@ class SavedPlaces extends Component {
 
     render() {
         const places = this.state.savedPlaces;
-        // return (
-        //     <div>
-        //         {places.map(p => {
-
-        //         })}
-        //     </div>
-        // )
-
+        return (
+            <div>
+                'saved places'
+            </div>
+        )
     }
 }
 
 
-function mapStateToProps({ auth }) {
-    return { auth };
-}
-
-export default connect(mapStateToProps, actions)(SavedPlaces);
+export default SavedPlaces;

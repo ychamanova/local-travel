@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
-import './App.module.css'
-
+import './App.module.css';
+import axios from 'axios';
 
 import Header from './Header';
 import Landing from './Landing';
-import Dashboard from './Dashboard';
 
 
 class App extends Component {
+    state = {
+        auth: null
+    };
+
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        axios.get('/api/current_user')
+            .then((res) => {
+                this.setState({ auth: res.data })
+            });
+    }
+
     render() {
         return (
             <div>
                 <BrowserRouter>
                     <div>
-                        <Header />
+                        <Header auth={this.state.auth} />
                         <Landing />
-                        {/* <Route exact path="/" component={Landing} /> */}
-                        {/* <Route exact path="/search" component={Dashboard} /> */}
                     </div>
                 </BrowserRouter>
             </div>
@@ -27,4 +37,4 @@ class App extends Component {
     }
 };
 
-export default connect(null, actions)(App);
+export default App;

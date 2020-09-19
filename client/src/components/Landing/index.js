@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import styles from './Landing.module.css';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
+
+import PopUp from "./PopUp";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart as faSolideHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faRegularHeart } from '@fortawesome/free-regular-svg-icons';
@@ -15,16 +16,24 @@ class Landing extends Component {
         search: '',
         savedPlaces: [],
         loading: false,
+        seen: false,
+        facilityToText: null,
     };
 
     constructor(props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.togglePop = this.togglePop.bind(this);
+        this.handleTextSubmit = this.handleTextSubmit.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchUser();
+        axios.get('/api/current_user')
+            .then((res) => {
+                console.log(res.data)
+                this.setState({ savedPlaces: res.data.savedPlaces })
+            });
         window.navigator.geolocation.getCurrentPosition(
             geo => {
                 this.setState({ longitude: geo.coords.longitude, latitude: geo.coords.latitude })
@@ -50,8 +59,10 @@ class Landing extends Component {
             facility: id,
         })
             .then((response) => {
-                console.log(response);
-                this.setState({ savedPlaces: response.data.savedPlaces });
+                if (response.data.savedPlaces) {
+                    this.setState({ savedPlaces: response.data.savedPlaces });
+                }
+
             })
             .catch((error) => {
                 console.log(error);
@@ -60,14 +71,23 @@ class Landing extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.props.auth);
         this.setState({ loading: true })
         axios.get(`/facilities?lat=${this.state.latitude}&long=${this.state.longitude}`)
             .then(responseData => {
-                console.log(responseData);
                 this.setState({ facilities: responseData.data, loading: false });
             })
     }
+
+    handleTextSubmit() {
+        this.togglePop();
+    }
+
+    togglePop = (fa) => {
+        this.setState({
+            seen: !this.state.seen,
+            selectedItem: fa,
+        });
+    };
 
     render() {
         return (
@@ -95,7 +115,7 @@ class Landing extends Component {
                             <input className={styles.go} type="submit" />
                         </div>
                     </form>
-                    //if there are facilities around, show them
+                    //if there are facilities nearby, display those
                     : <div className={styles.facility}>
                         {this.state.facilities.map(facility =>
                             (<div className={styles.facilityCard}>
@@ -103,6 +123,8 @@ class Landing extends Component {
                                     <div className={styles.facilityName}>
                                         {facility.FacilityName}
                                     </div>
+                                    <a className={styles.facilityName} onClick={() => this.togglePop(facility)}>Text Me Location</a>
+                                    {this.state.seen ? <PopUp selectedItem={this.state.selectedItem} lat={facility.FacilityLatitude} long={facility.FacilityLongitude} toggle={this.togglePop} handleTextSubmit={this.handleTextSubmit} /> : null}
                                     <a className={styles.saveButton} onClick={() => this.handleSave(facility.FacilityID)}>
                                         {
                                             this.state.savedPlaces.includes(facility.FacilityID)
@@ -126,9 +148,4 @@ class Landing extends Component {
     }
 }
 
-
-function mapStateToProps({ auth }) {
-    return { auth };
-}
-
-export default connect(mapStateToProps, actions)(Landing);
+export default Landing;
